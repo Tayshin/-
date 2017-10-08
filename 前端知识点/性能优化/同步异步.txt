@@ -1,0 +1,27 @@
+1.理解JS同步异步事件循环，
+https://segmentfault.com/a/1190000004322358
+
+异步容易实现非阻塞
+有消息队列和事件循环
+
+工作线程是生产者，主线程是消费者(只有一个消费者)。工作线程执行异步任务，执行完成后把对应的回调函数封装成一条消息放到消息队列中；主线程不断地从消息队列中取消息并执行，当消息队列空时主线程阻塞，直到消息队列再次非空。
+
+
+2.JS异步编程四种方法
+http://www.ruanyifeng.com/blog/2012/12/asynchronous%EF%BC%BFjavascript.html
+https://segmentfault.com/a/1190000006834026
+回调函数：简单容易，不利于代码阅读维护，耦合高，流程混乱，只能指定一个回调
+
+事件监听：简单容易，能绑定多个事件来指定多个回调，去耦合，模块化。但程序编程事件驱动，流程不清晰。
+
+发布订阅、观察者模式：类似于监听，但是可查看消息中心来了解存在多少信号，每个有多少订阅，监控程序。
+
+Promises对象：链式写法，不会错过某个事件
+
+3.JS异步加载
+defer async  创建script标签
+http://www.cnblogs.com/huangcong/p/3747038.html
+http://blog.csdn.net/chenmoquan/article/details/38407795
+
+4.ES6 generator异步执行 async await
+https://www.myfreax.com/in-depth-understanding-of-javascript-asynchronous-mode/

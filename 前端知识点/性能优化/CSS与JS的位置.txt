@@ -1,0 +1,13 @@
+http://www.cnblogs.com/baoku/p/5848073.html
+1.HTML CSS JS加载顺序和优化 
+http://www.cnblogs.com/yingsong/p/6170780.html
+defer async
+对于内置而不是连接外部脚本的script标签，以及动态生成的script标签，defer属性不起作用。
+http://www.cnblogs.com/xiaokk06/p/4966801.html
+
+
+2.放在head和body的区别
+http://www.imooc.com/wiki/view?pid=143
+3.CSS JS位置关系
+prefetch，三定律
+https://segmentfault.com/a/1190000002450735
