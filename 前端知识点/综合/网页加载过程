@@ -1,0 +1,8 @@
+1.网页加载过程
+https://www.zhihu.com/question/30218438
+
+2.HTML CSS JS加载顺序和优化 
+http://www.cnblogs.com/yingsong/p/6170780.html
+defer async
+对于内置而不是连接外部脚本的script标签，以及动态生成的script标签，defer属性不起作用。
+http://www.cnblogs.com/xiaokk06/p/4966801.html
