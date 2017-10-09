@@ -1,0 +1,38 @@
+1.meta标签相关
+META标签是HTML语言HEAD区的一个辅助性标签，它位于HTML文档头部的<HEAD>标记和<TITLE>标记之间，
+它提供用户不可见的信息。meta标签通常用来为搜索引擎robots定义页面主题，
+或者是定义用户浏览器上的cookie；它可以用于鉴别作者，设定页面格式，标注内容提要和关键字；
+还可以设置页面使其可以根据你定义的时间间隔刷新自己,以及设置RASC内容等级，等等。
+http-equiv :content refresh expires pragma Set-Cookie Windowtarget 
+name:
+http://www.cnblogs.com/esshs/articles/157588.html
+
+2.Mozilla关于viewport的介绍
+https://developer.mozilla.org/zh-CN/docs/Mobile/Viewport_meta_tag
+
+3.ppk的三篇文章总结
+http://www.cnblogs.com/2050/p/3877280.html
+
+浏览器默认的viewport叫做 layout viewport。
+这个layout viewport的宽度可以通过 document.documentElement.clientWidth 来获取。
+
+layout viewport 的宽度是大于浏览器可视区域的宽度的，所以我们还需要一个viewport来代表 浏览器可视区域的大小
+ppk把这个viewport叫做 visual viewport。visual viewport的宽度可以通过window.innerWidth 来获取，
+但在Android 2, Oprea mini 和 UC 8中无法正确获取。
+
+获得ideal viewport:
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+当 target-densitydpi=device-dpi 时， css中的1px会等于物理像素中的1px。此属性只有安卓支持，所以避免使用
+
+iphone和ipad上，width= device-width 不论横竖屏，都是竖屏宽度
+
+ie上，initial-scale = 1,不论横竖屏，都是竖屏宽度
+
+两者冲突时，取较大值。同时设置可解决兼容问题。
+
+安卓自带的webkit浏览器只有在 initial-scale = 1 以及没有设置width属性时才是表现正常的，
+也就相当于这理论在它身上基本没用；而IE则根本不甩initial-scale这个属性，无论你给他设置什么，
+initial-scale表现出来的效果永远是1
+
+iphone ipad 若没有指定initial-scale，会自动计算缩放值，不会出现横向滚动条
