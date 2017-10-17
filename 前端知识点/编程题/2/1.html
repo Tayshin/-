@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+     <meta chaset="UTF-8"
+     <title>在线试题</title>
+
+</head> 
+<body>
+    <ul id="source">
+        <li>魔性小电视条抱枕销量：<b>90</b><li>
+        <li>不记得了：<b>70</b><li>
+        <li>小电视条抱枕销量：<b>80</b><li>
+        <li>电视条抱枕销量：<b>50</b><li>
+        <li>刚刚视条抱枕销量：<b>40</b><li>
+        <li>来了电视条抱枕销量：<b>32</b><li>
+        <li>天天视条抱枕销量：<b>20</b><li>
+    </ul> 
+    <button id="sort-btn">按销量排序</button>
+    <script>
+            //实现按销量排序按钮的功能
+           //填充代码在这里
+           window.onload = function(){
+                var btn = document.getElementById('sort-btn');
+                var ul = document.getElementById('source');
+                btn.onclick = function(){
+                    var list = document.getElementsByTagName('li');
+                    var arr = [];
+                    arr = [...list];
+                    console.log(arr);
+                    // arr.sort(function(e1,e2){
+                    //     var n1 = parseInt(e1.childNodes[1],innerHTML);
+                    //     var n2 = parseInt(e2.childNodes[1].innerHTML);
+                    //     return n1-n2;
+                    // });
+                    for(var i=0;i<arr.length;i++){
+                        ul.appendChild(arr[i]);
+                    } 
+                }
+        }
+       </script>
+</body>
+</html>   
