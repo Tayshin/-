@@ -1,14 +1,18 @@
 你主要做PC端的页面吗？你是怎么做浏览器兼容的？对ie了解多少？谈谈你对各种浏览器存在的兼容性问题？
 
 （比较笼统的问题，不要死记硬背，总结性地回答+自己曾今遇到的比较严重的兼容性case+解决／记录浏览器兼容问题，
->>可以谈谈哪个浏览器，前端常用API，js差异，css渲染差异，为什么存在浏览器差异）
+可以谈谈哪个浏览器，前端常用API，js差异，css渲染差异，为什么存在浏览器差异）
 
-贴一片解决方案总结：https://zhuanlan.zhihu.com/p/25123086?refer=dreawer
+贴一片解决方案总结：https://zhuanlan.zhihu.com/p/25123086?refer=dreawer 
+以及：https://zhuanlan.zhihu.com/p/24413264
 but 毕竟是8个月之前的文章，今天是17年10月18号，attention～
+
 
 一个检测兼容性的工具：browserling.com/
 
+
 >>为什么存在差异：不同浏览器厂商对w3c标准、css的解释不同，甚至不同版本也会不同（ie）
+
 
 >>解决问题的思路：
 1、为什么代码效果不正常？
@@ -17,17 +21,109 @@ but 毕竟是8个月之前的文章，今天是17年10月18号，attention～
 2、如何让他显示正常？
 条件注释?单独hack？
 
-3产品目标人群如何（浏览器版本？
+3、产品目标人群如何（浏览器版本？
 采取优雅降级还是渐进增强
 
 具体做法：选择特定技术框架，如jquery库
-兼容性工具，如CSS Reset
+兼容性工具，如CSS Reset normalize.css
 条件注释，js css hack修补
 
-一下是详细做法总结：
+以下是详细做法总结：
 
->>通用hack方法
-1.利用浏览器自身的bug实现特定样式 2.利用浏览器的对css的支持程度，如-webkit-
 
-#IE条件注释
-只有ie可以识别的html注释语句
+>>IE条件注释：
+HTML源码中被IE有条件解释的语句。条件注释可被用来向IE提供及隐藏代码，
+注意：只有 IE9以下的浏览器才能识别这种语法，其他浏览器仅仅认为 是普通注释。
+在注释中嵌入脚本
+举例：
+<!-- [if IE]>
+  		//你想要执行的代码
+<![endif]-->
+<!-- [if ! IE 8]>
+  		//你想要执行的代码
+<![endif]-->
+<!--[if !IE]><!-->
+<script>alert("在 IE 下条件语法生效，但script不执行。在非 IE 下上下两句都被当做注释所以当前 script 会执行");</script>
+<!--<![endif]-->
+<!--[if IE 8]>
+<link href="ie8only.css" rel="stylesheet">
+<![endif]-->
+
+>>CSS hack 利用浏览器bug解决兼容问题
+针对不同的浏览器写不同的代码
+
+  color: red;
+  _color: blue; /*只有ie6认识*/
+  *color: pink; /*只有ie67认识*/
+  color: yellow\9;  /*ie浏览器都能识别*/
+
+    inline-block: >=ie8
+    min-width/min-height: >=ie7
+    :before,:after: >=ie8
+    div:hover: >=ie7
+    inline-block: >=ie8
+    background-size: >=ie9
+    圆角: >= ie9
+    阴影: >= ie9
+    动画/渐变: >= ie10
+
+
+>>CSS兼容性处理
+a标签顺序 link visited hover focus active 顺序不对 后面会覆盖前面
+
+IE6双边距问题：display：block会产生双倍 边距。 display:inline;可解；
+
+浮动也会产生margin双倍
+
+盒子模型，box-sizing
+
+ul边距不同
+
+IE6不支持24位png 
+
+透明度问题 特定写法
+
+img存在边距  vertical-align可以清除
+双倍float
+
+>>JS兼容性问题
+
+ie没有event.target属性，只有event.srcElement
+srcObj = event.srcElement ? event.srcElement : event.target;
+
+ie8以下不支持indexof();
+
+removeNode(); firefox不支持
+
+event.x  //ie
+event.pageX //w3c
+
+事件绑定
+function addEvent(elem, eventName, handler) {
+　　if (elem.attachEvent) {
+　　　　elem.attachEvent("on" + eventName,function(){
+　　　　　　handler.call(elem)}); 　 //此处使用回调函数call()，让this指向elem　　
+  } else if (elem.addEventListener) {
+　　    elem.addEventListener(eventName, handler, false);　　
+  }
+}
+function removeEvent(elem, eventName, handler) {
+  if (elem.detachEvent) {
+  　　elem.detachEvent("on" + eventName,function(){
+  　　　	handler.call(elem)}); 　　　　//此处使用回调函数call()，让this指向elem　　
+  } else if (elem.removeEventListener) {
+  　　elem.removeEventListener(eventName, handler, false);　　
+  }
+}
+
+function getKeyCode(e){
+  //兼容IE和Firefox获得keyBoardEvent对象
+  e = e ? e : (window.event ? window.event : "")  
+  //兼容IE和Firefox获得keyBoardEvent对象的键值
+  return e.keyCode ? e.keyCode : e.which;
+}
+//IE：e.keyCode
+//fireFox: e.which
+
+
+
