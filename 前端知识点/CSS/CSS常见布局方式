@@ -1,0 +1,66 @@
+CSS常见布局
+https://juejin.im/post/599970f4518825243a78b9d5
+
+传统盒模型布局
+文档流布局
+浮动布局
+定位布局
+
+flex布局、
+flex 的使用方法很简单，只需要将其 display 属性设置为 flex 就可以
+也可以设置行内的 flex，记得 Webkit 内核的浏览器，必须加上 -webkit 前缀
+注意，设为 Flex 布局以后，子元素的 float、clear 和 vertical-align 属性将失效。
+
+
+父容器
+主轴方向
+flex-direction:row row-reverse column column-reverse
+
+超出容器的排列样式（换行）
+flex-wrap: no-wrap wrap第一行在上方 wrap-reverse第一行在下方
+
+flex-direction+flex-wrap的简写
+ flex-flow: <flex-direction> || <flex-wrap>;
+
+子容器主轴排列方向
+justify-content:
+.ele{
+    justify-content: flex-start;      // 默认，左对齐
+    justify-content: flex-end;        // 右对齐
+    justify-content: center;          // 居中
+    justify-content: space-between;   // 两端对齐，项目之间的间隔都相等。
+    justify-content: space-around;    // 每个项目两侧的间隔相等。所以，项目之间的间隔比项目与边框的间隔大一倍。
+
+}
+
+自容器交叉轴
+align-items
+{
+    align-items: flex-start;    // 交叉轴的起点对齐。
+    align-items: flex-end;      // 交叉轴的终点对齐。
+    align-items: center;        // 交叉轴的中点对齐。
+    align-items: baseline;      // 项目的第一行文字的基线对齐。
+    align-items: stretch;       // 默认，如果项目未设置高度或设为auto，将占满整个容器的高度。
+}
+
+多跟轴线对齐方式
+.ele{
+    align-content: flex-start;   // 与交叉轴的起点对齐
+    align-content; flex-end;     // 与交叉轴的终点对齐。
+    align-content: center;       // 与交叉轴的中点对齐。
+    align-content: space-between;// 与交叉轴两端对齐，轴线之间的间隔平均分布。
+    align-content: space-around; // 每根轴线两侧的间隔都相等。所以，轴线之间的间隔比轴线与边框的间隔大一倍。
+    align-content: stretch;     // 默认 轴线占满整个交叉轴。
+}
+
+子容器也有 6 个属性：
+
+order：子容器的排列顺序
+flex-grow：子容器剩余空间的拉伸比例
+flex-shrink：子容器超出空间的压缩比例
+flex-basis：子容器在不伸缩情况下的原始尺寸
+flex：子元素的 flex 属性是 flex-grow,flex-shrink 和 flex-basis 的简写
+align-self
+
+Grid网格布局
+http://www.w3cplus.com/css3/what-is-css-grid-layout.html
